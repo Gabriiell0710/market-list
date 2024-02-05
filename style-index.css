@@ -1,0 +1,76 @@
+#header{
+    background-color: #B2B2B6;
+    width: 100wh;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#header-text{
+    color: #1E1E1E;
+    font-size: 50px;
+    font-weight: normal;
+}
+
+.container{
+    height: 75vh;
+    width: 100wh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section{
+    width: 70%;
+    row-gap: 70px;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: auto;
+    grid-template-areas: "button button button button"
+                         "button button button button"
+                         "button button button button"    
+    ;
+    
+}
+
+.btn{
+    width: 250px;
+    height: 70px;
+    background-color: #322F2F;
+    color: white;
+    font-size: 25px;
+    border-style: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover{
+    background-color: #B2B2B6;
+    color: #1E1E1E; 
+}
+
+.container-input{
+    width: 100wh;
+    height: 10vh;
+    display: flex;
+    justify-content: right;
+    padding-right: 260px;
+}
+
+#generate{
+    width: 200px;
+    height: 70px;
+    background-color: #670404;
+    color: white;
+    border-style: none;
+    border-radius: 15px;
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#generate:hover{
+    transform: scale(1.1);
+    font-size: 20px;
+}

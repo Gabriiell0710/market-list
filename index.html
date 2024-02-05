@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Mercado</title>
+
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./style-index.css">
 </head>
 <body>
 
@@ -11,21 +14,25 @@
         <h1 id="header-text">Lista de Mercado</h1>
     </header>
 
-    <section>
-        <button id="grocery">Mercearia</button>
-        <button id="canned">Enlatados</button>
-        <button id="bakery">Padaria</button>
-        <button id="drinks">Bebidas</button>
-        <button id="meat">Carnes</button>
-        <button id="cold">Frios</button>
-        <button id="fruits">Frutas</button>
-        <button id="vegetables">Legumes</button>
-        <button id="cleaning">Limpeza</button>
-        <button id="utilities">Utilidade</button>
-        <button id="hygiene">Higiene</button>
-        <button id="pet">Pet</button>
-    </section>
-    
-    <input id="generate" type="submit" value="GERAR PDF">
+    <div class="container">
+        <section>
+            <button class="btn" id="grocery">Mercearia</button>
+            <button class="btn" id="canned">Enlatados</button>
+            <button class="btn" id="bakery">Padaria</button>
+            <button class="btn" id="drinks">Bebidas</button>
+            <button class="btn" id="meat">Carnes</button>
+            <button class="btn" id="cold">Frios</button>
+            <button class="btn" id="fruits">Frutas</button>
+            <button class="btn" id="vegetables">Legumes</button>
+            <button class="btn" id="cleaning">Limpeza</button>
+            <button class="btn" id="utilities">Utilidade</button>
+            <button class="btn" id="hygiene">Higiene</button>
+            <button class="btn" id="pet">Pet</button>
+        </section>
+    </div>
+
+    <div class="container-input">
+        <input id="generate" type="submit" value="GERAR PDF">
+    </div>
 </body>
 </html>

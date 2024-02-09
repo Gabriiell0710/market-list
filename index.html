@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./style-index.css">
+    <link rel="stylesheet" href="./style-modal.css">
 </head>
 <body>
 
@@ -35,6 +36,8 @@
         <input id="generate" type="submit" value="GERAR PDF">
     </div>
 
+
+
     <div id="modal" class="modal">
 
         <header class="modal-header" id="modal-header">
@@ -43,7 +46,6 @@
         </header>
 
         <div class="itens" id="itens">
-
             <ul>
                 <li>Café</li>
                 <li>Biscoito</li>
@@ -54,12 +56,12 @@
             </ul>
 
             <div class="modal-inputs">
-                <input class="qnt" type="number" name="qtd" id="qtd-1">
-                <input class="qnt" type="number" name="qtd" id="qtd-2"> 
-                <input class="qnt" type="number" name="qtd" id="qtd-3"> 
-                <input class="qnt" type="number" name="qtd" id="qtd-4">
-                <input class="qnt" type="number" name="qtd" id="qtd-5"> 
-                <input class="qnt" type="number" name="qtd" id="qtd-6">     
+                <input class="qnt" type="number" name="qtd" id="qtd-1" min="0">
+                <input class="qnt" type="number" name="qtd" id="qtd-2" min="0"> 
+                <input class="qnt" type="number" name="qtd" id="qtd-3" min="0"> 
+                <input class="qnt" type="number" name="qtd" id="qtd-4" min="0">
+                <input class="qnt" type="number" name="qtd" id="qtd-5" min="0"> 
+                <input class="qnt" type="number" name="qtd" id="qtd-6" min="0">     
             </div>    
         </div>
         

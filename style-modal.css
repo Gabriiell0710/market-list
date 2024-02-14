@@ -50,6 +50,7 @@
     justify-content: space-between;
     align-items: start;
     border: #1E1E1E solid 1px;
+    overflow-y: auto;
 }
 
 .itens ul{

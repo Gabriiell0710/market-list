@@ -50,6 +50,17 @@ section{
     color: #1E1E1E; 
 }
 
+
+.btn-done{
+    width: 250px;
+    height: 70px;
+    background-color: #00501b;
+    color: white;
+    font-size: 25px;
+    border-style: none;
+    border-radius: 15px;
+}
+
 .container-input{
     width: 100wh;
     height: 10vh;

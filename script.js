@@ -10,7 +10,7 @@ buttons.forEach(button => {
         let idCategory = button.id.substring(4);
         load_products(idCategory);
         document.querySelector("#modal-title").textContent = button.textContent;
-        showIndexButton(idCategory);
+        getIdCategoryButton(idCategory);
     })
     const modal_exit = document.querySelector("#modal_exit").addEventListener('click', () => {
         document.querySelector("#modal").style.display = 'none';
@@ -49,53 +49,131 @@ async function load_products(idCategory){
 
 }
 
+//----------------------------------------------------------------
 
-const button = document.querySelector("#modal-btn");
-button.addEventListener('click', () => {
+const modalButton = document.querySelector("#modal-btn");
+modalButton.addEventListener('click', () => {
     var confirmation = confirm("Deseja salvar os itens?")
     if(confirmation){
         addList();
         document.querySelector("#modal").style.display = 'none';
-        console.log(catID);
+        getIdButton(catID);
+        getCategoryName(idButton);
+        changeColorButton(idButton);
+        saveProducts();
     }
-    
-    
 })
+
+
+//--------------------------------------------------------------
+
+var meuObjeto = {
+    listaProduto: [],
+    listaCategoria: []
+};
+
+function novoObjeto (productName, productQtd){
+    return{
+        productName: productName,
+        productQtd: productQtd
+    };
+}
+
+let listaMeuObjeto = [];
+
+//--------------------------------------------------------------
 
 function getProducts(){
     var product_item = document.querySelectorAll("li");
-    var productArray = [];
     product_item.forEach(elem => {
-        productArray.push(elem.textContent);
+       meuObjeto.listaProduto.push(elem.textContent);
     });
-    return productArray;
 }
+
+//-------------------------------------------------------------
 
 function getQtd(){
     var item_qtd = document.querySelectorAll(".modal-input");
-    var qndArray = [];
     item_qtd.forEach(elem => {
-        qndArray.push(elem.value);
+        meuObjeto.listaCategoria.push(elem.value);
     });
-    return qndArray;
 }
 
+//------------------------------------------------------------
 
+var productAndQtd_list = [];
 function addList(){
-    var itens_list = [];
-    itens_list.push({name: getProducts(), qtd: getQtd()});
-    console.log(itens_list); 
+    getProducts();
+    getQtd();
+    //listaMeuObjeto.push(novoObjeto("abóbora", 8));
+    for (let i = 0; i < meuObjeto.listaProduto.length; i++){
+        console.log("Oba oba")
+        let novoObj = novoObjeto(meuObjeto.listaProduto[i], meuObjeto.listaCategoria[i])
+        listaMeuObjeto.push(novoObj)
+        
+    }
+    console.table(listaMeuObjeto); 
 }
+
+//-------------------------------------------------------------
+
+
 
 
 var catID = '';
-
-function showIndexButton(idCategory){
+function getIdCategoryButton(idCategory){
     catID = idCategory;
-    
 }
 
+//----------------------------------------------------------
 
+var idButton = '';
+function getIdButton(number){
+    idButton = "btn_" + number;
+}
+
+//-----------------------------------------------------------
+
+function changeColorButton(idButton){
+    var button = document.querySelector("#" + idButton);
+    button.classList.remove('btn');
+    button.classList.add('btn-done');
+    button.disabled = true;
+}
+
+//-----------------------------------------------------------
+
+var categoryName='';
+function getCategoryName(n){
+var category = document.querySelector("#" + idButton);
+ categoryName = category.textContent;
+ console.log(categoryName);
+
+}
+
+//-------------------------------------------------------------
+
+
+
+
+
+
+
+
+function saveProducts(){
+
+    fetch("http://localhost:8080/save",
+    {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify(listaMeuObjeto)
+    })
+    .then(function (res) {console.log(res) })
+    .catch(function (res) {console.log(res) })
+};
 
 
 

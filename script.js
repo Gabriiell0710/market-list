@@ -67,26 +67,38 @@ modalButton.addEventListener('click', () => {
 
 //--------------------------------------------------------------
 
-var meuObjeto = {
-    listaProduto: [],
-    listaCategoria: []
+var myObject = {
+    productArray: [],
+    qtdArray: [],
+    categoryId: 0
+
 };
 
-function novoObjeto (productName, productQtd){
+//--------------------------------------------------------------
+
+function clearMyObject(){
+    myObject.productArray = [];
+    myObject.qtdArray = [];
+}
+
+//-----------------------------------------------------------
+
+function createProduct (productName, productQtd, categoryId){
     return{
         productName: productName,
-        productQtd: productQtd
+        productQtd: productQtd,
+        categoryId: categoryId
     };
 }
 
-let listaMeuObjeto = [];
+let listObjetc = [];
 
 //--------------------------------------------------------------
 
 function getProducts(){
     var product_item = document.querySelectorAll("li");
     product_item.forEach(elem => {
-       meuObjeto.listaProduto.push(elem.textContent);
+       myObject.productArray.push(elem.textContent);
     });
 }
 
@@ -95,30 +107,30 @@ function getProducts(){
 function getQtd(){
     var item_qtd = document.querySelectorAll(".modal-input");
     item_qtd.forEach(elem => {
-        meuObjeto.listaCategoria.push(elem.value);
+        myObject.qtdArray.push(elem.value);
     });
 }
 
 //------------------------------------------------------------
 
-var productAndQtd_list = [];
 function addList(){
     getProducts();
     getQtd();
-    //listaMeuObjeto.push(novoObjeto("abóbora", 8));
-    for (let i = 0; i < meuObjeto.listaProduto.length; i++){
-        console.log("Oba oba")
-        let novoObj = novoObjeto(meuObjeto.listaProduto[i], meuObjeto.listaCategoria[i])
-        listaMeuObjeto.push(novoObj)
+    listObjetc = [];
+    for (let i = 0; i < myObject.productArray.length; i++){
+        let newObj = createProduct(myObject.productArray[i], myObject.qtdArray[i], catID)
+        if(newObj.productQtd > 0 || newObj.productQtd != ""){
+            listObjetc.push(newObj)
+        }
         
     }
-    console.table(listaMeuObjeto); 
+
+    console.table(myObject)
+    console.table(listObjetc); 
+    clearMyObject();
 }
 
 //-------------------------------------------------------------
-
-
-
 
 var catID = '';
 function getIdCategoryButton(idCategory){
@@ -155,11 +167,6 @@ var category = document.querySelector("#" + idButton);
 
 
 
-
-
-
-
-
 function saveProducts(){
 
     fetch("http://localhost:8080/save",
@@ -169,16 +176,27 @@ function saveProducts(){
             'Content-Type': 'application/json'
         },
         method: "POST",
-        body: JSON.stringify(listaMeuObjeto)
+        body: JSON.stringify(listObjetc)
     })
     .then(function (res) {console.log(res) })
     .catch(function (res) {console.log(res) })
 };
 
 
+//--------------------------------------------------------------
 
 
+let buttonPdf = document.querySelector("#generate");
+buttonPdf.addEventListener('click', () => {
+    generatePdf();
+})
 
+//--------------------------------------------------------------
+
+function generatePdf(){
+    fetch("http://localhost:8080/generate")
+    console.log("OK")
+}
 
 
 

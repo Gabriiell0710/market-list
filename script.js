@@ -38,7 +38,7 @@ async function load_products(idCategory){
 
             const inputQtd = document.createElement('input')
             inputQtd.type = "number";
-            inputQtd.min = 0;
+            inputQtd.min = 1;
             inputQtd.classList.add('modal-input');
             productQtdInput.appendChild(inputQtd);
         }
@@ -55,10 +55,10 @@ const modalButton = document.querySelector("#modal-btn");
 modalButton.addEventListener('click', () => {
     var confirmation = confirm("Deseja salvar os itens?")
     if(confirmation){
-        addList();
         document.querySelector("#modal").style.display = 'none';
         getIdButton(catID);
-        getCategoryName(idButton);
+        getCategoryName();
+        addList();
         changeColorButton(idButton);
         saveProducts();
     }
@@ -70,7 +70,7 @@ modalButton.addEventListener('click', () => {
 var myObject = {
     productArray: [],
     qtdArray: [],
-    categoryId: 0
+    categoryA: ''
 
 };
 
@@ -83,11 +83,11 @@ function clearMyObject(){
 
 //-----------------------------------------------------------
 
-function createProduct (productName, productQtd, categoryId){
+function createProduct (productName, productQtd, categoryName){
     return{
         productName: productName,
         productQtd: productQtd,
-        categoryId: categoryId
+        categoryName: categoryName
     };
 }
 
@@ -118,7 +118,7 @@ function addList(){
     getQtd();
     listObjetc = [];
     for (let i = 0; i < myObject.productArray.length; i++){
-        let newObj = createProduct(myObject.productArray[i], myObject.qtdArray[i], catID)
+        let newObj = createProduct(myObject.productArray[i], myObject.qtdArray[i], categoryNamee)
         if(newObj.productQtd > 0 || newObj.productQtd != ""){
             listObjetc.push(newObj)
         }
@@ -155,11 +155,17 @@ function changeColorButton(idButton){
 
 //-----------------------------------------------------------
 
-var categoryName='';
-function getCategoryName(n){
-var category = document.querySelector("#" + idButton);
- categoryName = category.textContent;
- console.log(categoryName);
+var idCategoryComplete = '';
+function idComplete(idButton){
+    idCategoryComplete = "#" + idButton;
+}
+
+//-----------------------------------------------------------
+
+var categoryNamee = 'Abobora';
+function getCategoryName(){
+categoryNamee = document.querySelector("#" + idButton).textContent;
+ //console.log(categoryNamee);
 
 }
 
